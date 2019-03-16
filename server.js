@@ -2,16 +2,10 @@ const express = require('express')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 
-var cors = require('cors')
-
-
 const workoutRoutes = require('./routes/workouts')
 const exerciseRoutes = require('./routes/exercises')
 
 const app = express()
-
-// Allow cross origin requests
-app.use(cors())
 
 // Use morgan for logging
 app.use(morgan('dev'))
