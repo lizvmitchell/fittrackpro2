@@ -1,6 +1,5 @@
 const express = require('express')
 const morgan = require('morgan')
-const bodyParser = require('body-parser')
 
 const workoutRoutes = require('./routes/workouts')
 const exerciseRoutes = require('./routes/exercises')
@@ -11,7 +10,7 @@ const app = express()
 app.use(morgan('dev'))
 
 // Make sure we can parse JSON request bodies
-app.use(bodyParser.json())
+app.use(express.json())
 
 /* Mount the workout and exercise routes. For instance, when a request begins with
    /workouts, we'll hand it off to the router defined in ./routes/workouts.js
