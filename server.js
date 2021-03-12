@@ -24,5 +24,5 @@ app.use(express.static('public'));
 // If the environment has a PORT defined, use that (otherwise, default to 3030)
 const PORT = process.env.PORT || 3030;
 app.listen(PORT, () => {
-  console.log(`Getting swole on port ${PORT}`);
+  console.log(`Getting swole at http://localhost:${PORT}`);
 });
