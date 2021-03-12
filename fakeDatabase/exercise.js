@@ -6,17 +6,17 @@ module.exports = [
     id: 1,
     name: 'Bicycling',
     completed: true,
-    description: 'Bike 10km along the lakefront',
+    description: 'Bike 10km along the lakefront'
   },
   {
     id: 2,
     name: 'Weightlifting',
     completed: false,
-    description: 'Free weights',
+    description: 'Free weights'
   },
   {
     id: 3,
     name: 'Swimming',
-    completed: true,
-  },
-]
+    completed: true
+  }
+];
