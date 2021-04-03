@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const { db } = require('./database');
 
 const workoutRoutes = require('./routes/workouts');
 const exerciseRoutes = require('./routes/exercises');
@@ -23,6 +24,17 @@ app.use(express.static('public'));
 
 // If the environment has a PORT defined, use that (otherwise, default to 3030)
 const PORT = process.env.PORT || 3030;
-app.listen(PORT, () => {
-  console.log(`Getting swole at http://localhost:${PORT}`);
-});
+
+async function startServer() {
+  try {
+    await db.sync();
+
+    app.listen(PORT, () => {
+      console.log(`Getting swole at http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+startServer();

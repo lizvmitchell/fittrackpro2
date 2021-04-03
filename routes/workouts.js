@@ -1,31 +1,36 @@
 const express = require('express');
-const { Workout } = require('../fakeDatabase');
+// const { Workout } = require('../fakeDatabase');
+const { Workout } = require('../database')
 const router = express.Router();
 
 // GET all workouts
-router.get('/', (req, res, next) => {
-  res.json(Workout.findAll());
+router.get('/', async (req, res, next) => {
+  try {
+    res.json(await Workout.findAll());
+  } catch (error) {
+    next(error)
+  }
 });
 
 // GET a single workout by id
-router.get('/:id', (req, res, next) => {
-  const workout = Workout.findByPk(+req.params.id);
+router.get('/:id', async (req, res, next) => {
+  const workout = await Workout.findByPk(+req.params.id);
   if (!workout) return res.sendStatus(404);
   res.json(workout);
 });
 
 // POST a new workout
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
   const { name, date } = req.body;
   res.status(201);
-  res.json(Workout.create({ name, date }));
+  res.json(await Workout.create({ name, date }));
 });
 
 // DELETE a workout by id
-router.delete('/:id', (req, res, next) => {
-  const workout = Workout.findByPk(+req.params.id);
+router.delete('/:id', async (req, res, next) => {
+  const workout = await Workout.findByPk(+req.params.id);
   if (!workout) return res.sendStatus(404);
-  workout.destroy();
+  await workout.destroy();
   res.sendStatus(204);
 });
 
