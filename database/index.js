@@ -1,8 +1,10 @@
 const databaseUrl = process.env.DATABASE_URL || 'postgres://localhost:5432/fitness-tracker-a';
 const Sequelize = require('sequelize');
 const db = new Sequelize(databaseUrl, {
-  logging: false
-});
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: true
+  }, logging: false});
 
 const Workout = db.define('workout', {
   name: Sequelize.STRING,
