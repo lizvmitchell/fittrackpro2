@@ -3,7 +3,10 @@ const Sequelize = require('sequelize');
 const db = new Sequelize(databaseUrl, {
   dialect: 'postgres',
   dialectOptions: {
-    ssl: true
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
   }, logging: false});
 
 const Workout = db.define('workout', {
